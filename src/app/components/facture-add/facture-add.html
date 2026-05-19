@@ -1,0 +1,76 @@
+<div class="container mt-5">
+  <div class="card shadow border-primary">
+    <div class="card-header bg-primary text-white text-center">
+      <h2>SYSTÈME DE FACTURATION - KARESS sarl</h2>
+    </div>
+    <div class="card-body">
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <label>N° Facture</label>
+          <input type="text" [(ngModel)]="facture.numeroFacture" class="form-control" placeholder="ex: FAC-2024-001">
+        </div>
+        <div class="col-md-4">
+          <label>Nom du Client</label>
+          <input type="text" [(ngModel)]="facture.clientNom" class="form-control">
+        </div>
+        <div class="col-md-4">
+          <label>Adresse</label>
+          <input type="text" [(ngModel)]="facture.clientAdresse" class="form-control">
+        </div>
+      </div>
+
+      <table class="table table-hover mt-4">
+        <thead class="table-dark">
+          <tr>
+            <th>Désignation</th>
+            <th>Unité</th>
+            <th>Qté</th>
+            <th>P.U (DH)</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+       
+
+        <tbody>
+          <tr *ngFor="let item of facture.items; let i = index">
+            <td><input type="text" [(ngModel)]="item.designation" class="form-control"></td>
+            <td><input type="text" [(ngModel)]="item.unite" class="form-control"></td>
+          
+  <td>
+  <input type="text" [(ngModel)]="item.quantiteSaisie" class="form-control" placeholder="1 ou 20%">
+</td>
+            <td><input type="number" [(ngModel)]="item.prixUnitaire" class="form-control"></td>
+            <td><button (click)="supprimerLigne(i)" class="btn btn-danger btn-sm">X</button></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="form-group">
+    <label>Taux de TVA (%)</label>
+    <select class="form-control" [(ngModel)]="facture.tvaRate" name="tvaRate" (change)="calculerTotaux()">
+        <option [ngValue]="20">20% (Standard)</option>
+        <option [ngValue]="10">10% (Réduit)</option>
+    </select>
+</div>
+      <div class="mb-3">
+  <label>ICE Client</label>
+  <input type="text" [(ngModel)]="facture.clientIce" name="clientIce" class="form-control">
+</div>
+
+<div class="mb-3">
+  <label>N° Bon de Commande (BC)</label>
+  <input type="text" [(ngModel)]="facture.bcNumero" name="bcNumero" class="form-control">
+</div>
+
+<div class="mb-3">
+  <label>Objet de la facture</label>
+  <input type="text" [(ngModel)]="facture.objetFacture" name="objetFacture" class="form-control">
+</div>
+
+      <button (click)="ajouterLigne()" class="btn btn-outline-primary">+ Ajouter un article</button>
+      <hr>
+      <div class="d-grid">
+        <button (click)="enregistrer()" class="btn btn-success btn-lg">ENREGISTRER ET IMPRIMER LE PDF</button>
+      </div>
+    </div>
+  </div>
+</div>

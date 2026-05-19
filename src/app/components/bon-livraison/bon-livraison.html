@@ -1,0 +1,61 @@
+<div class="container mt-4">
+  <div class="card shadow p-4">
+    <h2 class="text-center mb-4">CRÉER UN BON DE LIVRAISON</h2>
+
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label>Destinataire (Client) :</label>
+        <input type="text" class="form-control" [(ngModel)]="blData.clientNom">
+      </div>
+      <div class="col-md-6">
+        <label>N° BL :</label>
+        <input type="text" class="form-control" [(ngModel)]="blData.numeroBL">
+      </div>
+      <div class="col-md-6">
+        <label>N° BC :</label>
+        <input type="text" class="form-control" [(ngModel)]="blData.bcNumero">
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label>Objet :</label>
+      <textarea class="form-control" [(ngModel)]="blData.objet"></textarea>
+    </div>
+
+    <table class="table table-bordered">
+      <thead class="table-light">
+        <tr>
+          <th>Désignation</th>
+          <th>Unité</th>
+          <th>Quantité</th>
+          <th>P.U HTVA</th>
+          <th>Montant HTVA</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of blData.items; let i = index">
+          <td><input type="text" class="form-control" [(ngModel)]="item.designation"></td>
+          <td><input type="text" class="form-control" [(ngModel)]="item.unite"></td>
+          <td><input type="number" class="form-control" [(ngModel)]="item.quantite" (input)="calculerTotaux()"></td>
+          <td><input type="number" class="form-control" [(ngModel)]="item.prixUnitaire" (input)="calculerTotaux()"></td>
+          <td class="align-middle bg-light"><strong>{{ (item.quantite * item.prixUnitaire) | number:'1.2-2' }} DH</strong></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <button class="btn btn-primary mb-3" (click)="ajouterLigne()">+ Ajouter une ligne</button>
+
+    <div class="text-end mb-4">
+      <h4 class="fw-bold">Total HTVA : {{ blData.totalHt | number:'1.2-2' }} DH</h4>
+    </div>
+
+    <div class="form-group border p-3 bg-light rounded">
+      <label class="fw-bold mb-2">Cachet du client (Image) :</label>
+      <input type="file" class="form-control" (change)="onFileSelected($event)" accept="image/*">
+    </div>
+
+    <button class="btn btn-success btn-lg w-100 mt-4" (click)="onSubmit()">
+      ENREGISTRER ET GÉNÉRER LE BL (PDF)
+    </button>
+  </div>
+</div>
