@@ -48,11 +48,11 @@ export class FactureAddComponent {
 }
 
   enregistrer() {
-    this.http.post('http://localhohttps://karess-backend-production.up.railway.appst:8080/api/factures/save', this.facture)
+    this.http.post(`karess-backend-production-6a64.up.railway.app/api/factures/save`, this.facture)
       .subscribe({
         next: (res: any) => {
           alert('Facture enregistrée !');
-          window.open(`https://karess-backend-production.up.railway.app/api/factures/generate-pdf/${res.id}`, '_blank');
+          window.open(`karess-backend-production-6a64.up.railway.app/api/factures/generate-pdf/${res.id}`, '_blank');
         },
         error: (err) => alert('Erreur : Vérifie que ton Backend Java est allumé !')
       });
