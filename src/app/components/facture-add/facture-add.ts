@@ -48,7 +48,7 @@ export class FactureAddComponent {
 }
 
   enregistrer() {
-    this.http.post(`karess-backend-production-6a64.up.railway.app/api/factures/save`, this.facture)
+    this.http.post('karess-backend-production-6a64.up.railway.app/api/factures/save', this.facture)
       .subscribe({
         next: (res: any) => {
           alert('Facture enregistrée !');
