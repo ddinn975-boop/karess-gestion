@@ -1,1 +1,28 @@
-<p>login works!</p>
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+  <div class="card p-4 shadow" style="width: 400px; border-radius: 15px;">
+    <div class="text-center mb-4">
+      <h3 class="text-primary fw-bold">KARESS sarl</h3>
+      <p class="text-muted">Système de Facturation - Connexion</p>
+    </div>
+
+    <form (ngSubmit)="onLogin()">
+      <div class="mb-3">
+        <label class="form-label">Nom d'utilisateur</label>
+        <input type="text" name="username" [(ngModel)]="credentials.username" class="form-control" required>
+      </div>
+      
+      <div class="mb-3">
+        <label class="form-label">Mot de passe</label>
+        <input type="password" name="password" [(ngModel)]="credentials.password" class="form-control" required>
+      </div>
+
+      <div *ngIf="errorMessage" class="alert alert-danger p-2 small text-center">
+        {{ errorMessage }}
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100 py-2 fw-bold" style="border-radius: 8px;">
+        Se connecter
+      </button>
+    </form>
+  </div>
+</div>

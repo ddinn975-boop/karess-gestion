@@ -3,15 +3,19 @@ import { DashboardComponent } from './components/dashboard/dashboard';
 import { FactureAddComponent } from './components/facture-add/facture-add';
 import { BonLivraisonComponent } from './components/bon-livraison/bon-livraison';
 import { DevisAddComponent } from './components/devis-add/devis-add';
-
+// الحل هنا: صححنا المسار وزدنا كلمة components
+import { LoginComponent } from './login/login';
 export const routes: Routes = [
-  { path: '', component: DashboardComponent },
+  // 1. الصفحة الأولى للي كتحل في السيت تولي هي الـ login بزز
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  
+  // 2. باقي الصفحات والمسارات
+  { path: 'dashboard', component: DashboardComponent },
   { path: 'facture', component: FactureAddComponent },
   { path: 'bl', component: BonLivraisonComponent },
-  
-  // 1. Zid Devis HNA (9bel l-wildcard **)
   { path: 'devis-add', component: DevisAddComponent },
   
-  // 2. L-wildcard (ay 7aja ma-baynach) khass t-kon hiya l-KHRYA dima
-  { path: '**', redirectTo: '' }
+  // 3. الـ wildcard (أي حاجة غريبة ترجعنا للـ login)
+  { path: '**', redirectTo: 'login' }
 ];
