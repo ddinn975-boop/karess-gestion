@@ -18,7 +18,7 @@ export class LoginComponent {
   constructor(private http: HttpClient, private router: Router) {}
 
   onLogin() {
-    this.http.post('https://karess-prod-production.up.railway.app/api/auth/login', this.credentials)
+    this.http.post('https://karess--production.up.railway.app/api/auth/login', this.credentials)
       .subscribe({
         next: (response: any) => {
           localStorage.setItem('user', JSON.stringify(response));
